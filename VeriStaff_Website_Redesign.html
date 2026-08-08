@@ -1,0 +1,1818 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>VeriStaff — Website Redesign Mockup</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+
+  :root{
+    --navy:#da1c5c;                                                                                                                                                                             
+    --navy-2:#163A50;
+    --navy-3:#1E4A63;
+    --sand:#EFE6D6;
+    --paper:#FFFFFF;
+    --gold:#E8A33D;
+    --gold-deep:#C97F1E;
+    --ink:#14232B;
+    --muted:#5B6E77;
+    --line:#E2E8E6;
+    --mint:#4FBDA3;
+    --maxw:1180px;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'IBM Plex Sans', sans-serif;
+    color:var(--ink);
+    background:var(--paper);
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{max-width:100%; display:block;}
+  a{color:inherit; text-decoration:none;}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 32px;}
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    font-weight:500;
+  }
+  h1,h2,h3{font-family:'Fraunces', serif; font-weight:600; letter-spacing:-0.01em;}
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:14px 26px; border-radius:999px;
+    font-weight:600; font-size:15px;
+    border:1px solid transparent;
+    cursor:pointer; transition:transform .15s ease, box-shadow .15s ease, background .15s ease;
+  }
+  .btn-gold{ background:var(--gold); color:var(--navy); }
+  .btn-gold:hover{ background:var(--gold-deep); transform:translateY(-1px); box-shadow:0 8px 20px rgba(201,127,30,.28); }
+  .btn-ghost{ background:transparent; color:var(--paper); border-color:rgba(255,255,255,.35); }
+  .btn-ghost:hover{ border-color:rgba(255,255,255,.8); }
+  .btn-outline-navy{ background:transparent; color:var(--navy); border-color:var(--navy); }
+  .btn-outline-navy:hover{ background:var(--navy); color:var(--paper); }
+
+  /* ---------- Header ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(255,255,255,.88);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{ display:flex; align-items:center; justify-content:space-between; padding:18px 32px; max-width:var(--maxw); margin:0 auto; }
+  .logo{ display:flex; align-items:center; gap:10px; font-family:'Fraunces', serif; font-weight:700; font-size:20px; color:var(--navy); }
+  .logo-mark{ width:30px; height:30px; border-radius:8px; background:var(--navy); position:relative; overflow:hidden; flex:0 0 auto; }
+  .logo-mark::before, .logo-mark::after{ content:""; position:absolute; width:12px; height:12px; border-radius:50%; }
+  .logo-mark::before{ background:var(--gold); top:5px; left:5px; }
+  .logo-mark::after{ background:var(--mint); bottom:5px; right:5px; }
+  nav.links{ display:flex; gap:34px; font-size:14.5px; font-weight:500; color:var(--ink); }
+  nav.links a{ position:relative; padding:4px 0; }
+  nav.links a::after{ content:""; position:absolute; left:0; bottom:-2px; width:0; height:2px; background:var(--gold); transition:width .2s ease; }
+  nav.links a:hover::after{ width:100%; }
+  nav.links a.active{ color:var(--navy); }
+  nav.links a.active::after{ width:100%; }
+  .nav-cta{ display:flex; align-items:center; gap:18px; }
+  .nav-cta .btn{ padding:11px 22px; font-size:14px; }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    background:
+      radial-gradient(900px 500px at 85% -10%, rgba(232,163,61,.18), transparent 60%),
+      radial-gradient(700px 500px at 100% 100%, rgba(79,189,163,.14), transparent 55%),
+      var(--navy);
+    color:var(--paper);
+    padding:88px 0 76px;
+  }
+  .hero-grid{ display:grid; grid-template-columns:1.15fr .85fr; gap:56px; align-items:center; }
+  .hero .eyebrow{ color:var(--gold); }
+  .hero h1{ font-size:52px; line-height:1.06; margin:18px 0 22px; color:var(--paper); }
+  .hero h1 em{ font-style:normal; color:var(--gold); }
+  .hero p.lead{ font-size:17.5px; color:#C9D8DE; max-width:480px; margin-bottom:32px; }
+  .hero-actions{ display:flex; gap:14px; align-items:center; margin-bottom:36px; flex-wrap:wrap; }
+  .hero-note{ font-size:13px; color:#8FA6AF; }
+  .hero-badges{ display:flex; gap:22px; flex-wrap:wrap; margin-top:8px; }
+  .hero-badge{ display:flex; align-items:center; gap:8px; font-size:12.5px; color:#B9CBD1; font-weight:500; }
+  .hero-badge .dot{ width:7px; height:7px; border-radius:50%; background:var(--mint); }
+
+  /* ---- Clock bridge (signature element) ---- */
+  .bridge{
+    background:var(--navy-2);
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:20px;
+    padding:26px 26px 22px;
+    position:relative;
+  }
+  .bridge-label{ display:flex; justify-content:space-between; align-items:center; margin-bottom:18px; }
+  .bridge-label .eyebrow{ color:#9FD9C9; }
+  .live{ display:flex; align-items:center; gap:6px; font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--mint); }
+  .live .pulse{ width:7px; height:7px; border-radius:50%; background:var(--mint); box-shadow:0 0 0 0 rgba(79,189,163,.6); animation:pulse 2s infinite; }
+  @keyframes pulse{ 0%{box-shadow:0 0 0 0 rgba(79,189,163,.55);} 70%{box-shadow:0 0 0 8px rgba(79,189,163,0);} 100%{box-shadow:0 0 0 0 rgba(79,189,163,0);} }
+
+  .cities{ display:flex; align-items:center; justify-content:space-between; position:relative; padding:10px 4px 4px; }
+  .city{ text-align:center; flex:0 0 auto; width:120px; }
+  .city .place{ font-size:13px; font-weight:600; color:var(--paper); }
+  .city .country{ font-size:11px; color:#8FA6AF; margin-bottom:10px; }
+  .city .time{ font-family:'IBM Plex Mono', monospace; font-size:26px; font-weight:500; color:var(--gold); letter-spacing:.02em; }
+  .city .tz{ font-size:10.5px; color:#8FA6AF; margin-top:4px; }
+  .arc-wrap{ flex:1; height:40px; position:relative; }
+  .arc-wrap svg{ width:100%; height:100%; overflow:visible; }
+  .bridge-foot{ margin-top:20px; padding-top:16px; border-top:1px solid rgba(255,255,255,.08); font-size:12px; color:#9FB3BA; line-height:1.55; }
+  .bridge-foot strong{ color:#DCE7EA; }
+
+  /* ---------- Trust strip ---------- */
+  .trust-strip{ background:var(--paper); border-bottom:1px solid var(--line); padding:26px 0; }
+  .trust-strip .wrap{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; }
+  .trust-item{ display:flex; align-items:center; gap:10px; font-size:13px; color:var(--muted); font-weight:500; }
+  .trust-item .ico{ width:26px; height:26px; border-radius:50%; background:var(--sand); display:flex; align-items:center; justify-content:center; color:var(--navy); font-size:13px; font-weight:700; font-family:'Fraunces',serif; flex:0 0 auto;}
+
+  /* ---------- Section shell ---------- */
+  section{ padding:96px 0; }
+  .section-sand{ background:var(--sand); }
+  .head-block{ max-width:620px; margin-bottom:56px; }
+  .head-block .eyebrow{ color:var(--gold-deep); }
+  .head-block h2{ font-size:36px; margin:14px 0 14px; color:var(--navy); }
+  .head-block p{ color:var(--muted); font-size:16px; }
+
+  /* ---------- Services ---------- */
+  .services-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+  .service-card{
+    background:var(--paper); border:1px solid var(--line); border-radius:18px;
+    padding:32px 28px; transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+  }
+  .service-card:hover{ transform:translateY(-4px); box-shadow:0 18px 40px rgba(15,42,61,.08); border-color:transparent; }
+  .service-icon{ width:52px; height:52px; border-radius:14px; display:flex; align-items:center; justify-content:center; font-size:22px; margin-bottom:22px; }
+  .service-card:nth-child(1) .service-icon{ background:#FDECD2; color:var(--gold-deep); }
+  .service-card:nth-child(2) .service-icon{ background:#DCEEE9; color:#1F7A64; }
+  .service-card:nth-child(3) .service-icon{ background:#E4EEF3; color:var(--navy-3); }
+  .service-card h3{ font-size:20px; color:var(--navy); margin-bottom:10px; }
+  .service-card p{ color:var(--muted); font-size:14.5px; margin-bottom:18px; }
+  .service-list{ list-style:none; display:flex; flex-direction:column; gap:8px; margin-bottom:22px; }
+  .service-list li{ font-size:13.5px; color:var(--ink); display:flex; gap:8px; align-items:flex-start; }
+  .service-list li::before{ content:"—"; color:var(--gold-deep); flex:0 0 auto; }
+  .service-card .link{ font-size:13.5px; font-weight:600; color:var(--navy); border-bottom:1.5px solid var(--gold); padding-bottom:2px; }
+
+  /* ---------- How it works ---------- */
+  .steps{ display:grid; grid-template-columns:repeat(4,1fr); gap:0; position:relative; }
+  .steps::before{ content:""; position:absolute; top:26px; left:6%; right:6%; height:1px; background:repeating-linear-gradient(90deg, var(--line) 0 8px, transparent 8px 16px); }
+  .step{ position:relative; padding-right:20px; }
+  .step-num{ width:52px; height:52px; border-radius:50%; background:var(--navy); color:var(--paper); font-family:'Fraunces',serif; font-weight:600; font-size:19px; display:flex; align-items:center; justify-content:center; margin-bottom:22px; position:relative; z-index:2; }
+  .step h3{ font-size:17px; color:var(--navy); margin-bottom:8px; font-family:'IBM Plex Sans',sans-serif; font-weight:600; }
+  .step p{ font-size:13.5px; color:var(--muted); }
+
+  /* ---------- Commitment / ethical section ---------- */
+  .commit{ background:var(--navy); color:var(--paper); }
+  .commit-grid{ display:grid; grid-template-columns:.95fr 1.05fr; gap:64px; align-items:start; }
+  .commit .eyebrow{ color:var(--mint); }
+  .commit h2{ color:var(--paper); font-size:34px; margin:14px 0 20px; }
+  .commit p.lead{ color:#C9D8DE; font-size:16px; max-width:460px; margin-bottom:8px; }
+  .pillars{ display:flex; flex-direction:column; gap:0; }
+  .pillar{ display:flex; gap:18px; padding:22px 0; border-bottom:1px solid rgba(255,255,255,.1); }
+  .pillar:first-child{ padding-top:0; }
+  .pillar-mark{ width:38px; height:38px; border-radius:10px; background:rgba(232,163,61,.14); color:var(--gold); display:flex; align-items:center; justify-content:center; font-family:'Fraunces',serif; font-weight:700; font-size:15px; flex:0 0 auto; }
+  .pillar h3{ font-family:'IBM Plex Sans',sans-serif; font-size:15.5px; font-weight:600; margin-bottom:5px; color:var(--paper); }
+  .pillar p{ font-size:13.5px; color:#9FB3BA; }
+  .stat-row{ display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:38px; }
+  .stat{ background:var(--navy-2); border:1px solid rgba(255,255,255,.08); border-radius:14px; padding:20px 18px; }
+  .stat .num{ font-family:'Fraunces',serif; font-size:30px; color:var(--gold); font-weight:600; }
+  .stat .lbl{ font-size:12px; color:#9FB3BA; margin-top:4px; }
+
+  /* ---------- Testimonials ---------- */
+  .testi-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+  .testi-card{ background:var(--paper); border:1px solid var(--line); border-radius:18px; padding:30px; display:flex; flex-direction:column; gap:18px; }
+  .stars{ color:var(--gold); font-size:14px; letter-spacing:2px; }
+  .testi-card p.quote{ font-size:14.5px; color:var(--ink); line-height:1.65; }
+  .testi-person{ display:flex; align-items:center; gap:12px; margin-top:auto; }
+  .avatar{ width:38px; height:38px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-family:'Fraunces',serif; font-weight:700; color:var(--paper); font-size:14px; }
+  .testi-person .name{ font-size:13.5px; font-weight:600; color:var(--navy); }
+  .testi-person .role{ font-size:12px; color:var(--muted); }
+
+  /* ---------- CTA band ---------- */
+  .cta-band{ background:var(--sand); }
+  .cta-inner{ background:var(--navy); border-radius:24px; padding:64px 64px; display:flex; justify-content:space-between; align-items:center; gap:40px; position:relative; overflow:hidden; }
+  .cta-inner::before{ content:""; position:absolute; right:-60px; top:-60px; width:220px; height:220px; border-radius:50%; background:radial-gradient(circle, rgba(232,163,61,.35), transparent 70%); }
+  .cta-inner h2{ color:var(--paper); font-size:30px; max-width:480px; }
+  .cta-inner p{ color:#B9CBD1; margin-top:10px; font-size:14.5px; }
+  .cta-right{ flex:0 0 auto; }
+
+  /* ---------- Footer ---------- */
+  footer{ background:var(--navy); color:#9FB3BA; padding:64px 0 28px; border-top:1px solid rgba(255,255,255,.06); }
+  .foot-grid{ display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr; gap:40px; margin-bottom:48px; }
+  .foot-logo{ display:flex; align-items:center; gap:10px; font-family:'Fraunces',serif; font-weight:700; font-size:19px; color:var(--paper); margin-bottom:14px; }
+  footer p.desc{ font-size:13.5px; max-width:260px; line-height:1.6; }
+  .foot-col h4{ font-size:12.5px; color:var(--paper); letter-spacing:.06em; text-transform:uppercase; margin-bottom:16px; font-weight:600; }
+  .foot-col ul{ list-style:none; display:flex; flex-direction:column; gap:10px; }
+  .foot-col a{ font-size:13.5px; }
+  .foot-col a:hover{ color:var(--paper); }
+  .foot-bottom{ border-top:1px solid rgba(255,255,255,.08); padding-top:24px; display:flex; justify-content:space-between; font-size:12.5px; flex-wrap:wrap; gap:10px; }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 980px){
+    nav.links{ display:none; }
+    .hero-grid{ grid-template-columns:1fr; }
+    .hero h1{ font-size:38px; }
+    .services-grid, .testi-grid{ grid-template-columns:1fr; }
+    .steps{ grid-template-columns:1fr 1fr; row-gap:36px; }
+    .steps::before{ display:none; }
+    .commit-grid{ grid-template-columns:1fr; gap:40px; }
+    .stat-row{ grid-template-columns:1fr 1fr; }
+    .cta-inner{ flex-direction:column; text-align:center; padding:44px 28px; }
+    .foot-grid{ grid-template-columns:1fr 1fr; }
+  }
+
+  /* Mockup ribbon */
+  .mock-ribbon{
+    position:fixed; bottom:18px; right:18px; z-index:100;
+    background:var(--ink); color:#fff; font-family:'IBM Plex Mono',monospace;
+    font-size:11px; padding:9px 14px; border-radius:8px; opacity:.85;
+    box-shadow:0 8px 24px rgba(0,0,0,.25);
+  }
+
+/* ---- Clock bridge (signature element) ---- */
+  .bridge{
+    background:var(--navy-2);
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:20px;
+    padding:26px 26px 22px;
+    position:relative;
+  }
+  .bridge-label{ display:flex; justify-content:space-between; align-items:center; margin-bottom:18px; }
+  .bridge-label .eyebrow{ color:#9FD9C9; }
+  .live{ display:flex; align-items:center; gap:6px; font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--mint); }
+  .live .pulse{ width:7px; height:7px; border-radius:50%; background:var(--mint); box-shadow:0 0 0 0 rgba(79,189,163,.6); animation:pulse 2s infinite; }
+  @keyframes pulse{ 0%{box-shadow:0 0 0 0 rgba(79,189,163,.55);} 70%{box-shadow:0 0 0 8px rgba(79,189,163,0);} 100%{box-shadow:0 0 0 0 rgba(79,189,163,0);} }
+
+  .cities{ display:flex; align-items:center; justify-content:space-between; position:relative; padding:10px 4px 4px; }
+  .city{ text-align:center; flex:0 0 auto; width:120px; }
+  .city .place{ font-size:13px; font-weight:600; color:var(--paper); }
+  .city .country{ font-size:11px; color:#8FA6AF; margin-bottom:10px; }
+  .city .time{ font-family:'IBM Plex Mono', monospace; font-size:26px; font-weight:500; color:var(--gold); letter-spacing:.02em; }
+  .city .tz{ font-size:10.5px; color:#8FA6AF; margin-top:4px; }
+  .arc-wrap{ flex:1; height:40px; position:relative; }
+  .arc-wrap svg{ width:100%; height:100%; overflow:visible; }
+  .bridge-foot{ margin-top:20px; padding-top:16px; border-top:1px solid rgba(255,255,255,.08); font-size:12px; color:#9FB3BA; line-height:1.55; }
+  .bridge-foot strong{ color:#DCE7EA; }
+
+  /* ---------- Trust strip ---------- */
+  .trust-strip{ background:var(--paper); border-bottom:1px solid var(--line); padding:26px 0; }
+  .trust-strip .wrap{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; }
+  .trust-item{ display:flex; align-items:center; gap:10px; font-size:13px; color:var(--muted); font-weight:500; }
+  .trust-item .ico{ width:26px; height:26px; border-radius:50%; background:var(--sand); display:flex; align-items:center; justify-content:center; color:var(--navy); font-size:13px; font-weight:700; font-family:'Fraunces',serif; flex:0 0 auto;}
+
+  /* ---------- Section shell ---------- */
+  section{ padding:96px 0; }
+  .section-sand{ background:var(--sand); }
+  .head-block{ max-width:620px; margin-bottom:56px; }
+  .head-block .eyebrow{ color:var(--gold-deep); }
+  .head-block h2{ font-size:36px; margin:14px 0 14px; color:var(--navy); }
+  .head-block p{ color:var(--muted); font-size:16px; }
+
+  /* ---------- Services ---------- */
+  .services-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+  .service-card{
+    background:var(--paper); border:1px solid var(--line); border-radius:18px;
+    padding:32px 28px; transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+  }
+  .service-card:hover{ transform:translateY(-4px); box-shadow:0 18px 40px rgba(15,42,61,.08); border-color:transparent; }
+  .service-icon{ width:52px; height:52px; border-radius:14px; display:flex; align-items:center; justify-content:center; font-size:22px; margin-bottom:22px; }
+  .service-card:nth-child(1) .service-icon{ background:#FDECD2; color:var(--gold-deep); }
+  .service-card:nth-child(2) .service-icon{ background:#DCEEE9; color:#1F7A64; }
+  .service-card:nth-child(3) .service-icon{ background:#E4EEF3; color:var(--navy-3); }
+  .service-card h3{ font-size:20px; color:var(--navy); margin-bottom:10px; }
+  .service-card p{ color:var(--muted); font-size:14.5px; margin-bottom:18px; }
+  .service-list{ list-style:none; display:flex; flex-direction:column; gap:8px; margin-bottom:22px; }
+  .service-list li{ font-size:13.5px; color:var(--ink); display:flex; gap:8px; align-items:flex-start; }
+  .service-list li::before{ content:"—"; color:var(--gold-deep); flex:0 0 auto; }
+  .service-card .link{ font-size:13.5px; font-weight:600; color:var(--navy); border-bottom:1.5px solid var(--gold); padding-bottom:2px; }
+
+  /* ---------- How it works ---------- */
+  .steps{ display:grid; grid-template-columns:repeat(4,1fr); gap:0; position:relative; }
+  .steps::before{ content:""; position:absolute; top:26px; left:6%; right:6%; height:1px; background:repeating-linear-gradient(90deg, var(--line) 0 8px, transparent 8px 16px); }
+  .step{ position:relative; padding-right:20px; }
+  .step-num{ width:52px; height:52px; border-radius:50%; background:var(--navy); color:var(--paper); font-family:'Fraunces',serif; font-weight:600; font-size:19px; display:flex; align-items:center; justify-content:center; margin-bottom:22px; position:relative; z-index:2; }
+  .step h3{ font-size:17px; color:var(--navy); margin-bottom:8px; font-family:'IBM Plex Sans',sans-serif; font-weight:600; }
+  .step p{ font-size:13.5px; color:var(--muted); }
+
+  /* ---------- Commitment / ethical section ---------- */
+  .commit{ background:var(--navy); color:var(--paper); }
+  .commit-grid{ display:grid; grid-template-columns:.95fr 1.05fr; gap:64px; align-items:start; }
+  .commit .eyebrow{ color:var(--mint); }
+  .commit h2{ color:var(--paper); font-size:34px; margin:14px 0 20px; }
+  .commit p.lead{ color:#C9D8DE; font-size:16px; max-width:460px; margin-bottom:8px; }
+  .pillars{ display:flex; flex-direction:column; gap:0; }
+  .pillar{ display:flex; gap:18px; padding:22px 0; border-bottom:1px solid rgba(255,255,255,.1); }
+  .pillar:first-child{ padding-top:0; }
+  .pillar-mark{ width:38px; height:38px; border-radius:10px; background:rgba(232,163,61,.14); color:var(--gold); display:flex; align-items:center; justify-content:center; font-family:'Fraunces',serif; font-weight:700; font-size:15px; flex:0 0 auto; }
+  .pillar h3{ font-family:'IBM Plex Sans',sans-serif; font-size:15.5px; font-weight:600; margin-bottom:5px; color:var(--paper); }
+  .pillar p{ font-size:13.5px; color:#9FB3BA; }
+  .stat-row{ display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:38px; }
+  .stat{ background:var(--navy-2); border:1px solid rgba(255,255,255,.08); border-radius:14px; padding:20px 18px; }
+  .stat .num{ font-family:'Fraunces',serif; font-size:30px; color:var(--gold); font-weight:600; }
+  .stat .lbl{ font-size:12px; color:#9FB3BA; margin-top:4px; }
+
+  /* ---------- Testimonials ---------- */
+  .testi-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+  .testi-card{ background:var(--paper); border:1px solid var(--line); border-radius:18px; padding:30px; display:flex; flex-direction:column; gap:18px; }
+  .stars{ color:var(--gold); font-size:14px; letter-spacing:2px; }
+  .testi-card p.quote{ font-size:14.5px; color:var(--ink); line-height:1.65; }
+  .testi-person{ display:flex; align-items:center; gap:12px; margin-top:auto; }
+  .avatar{ width:38px; height:38px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-family:'Fraunces',serif; font-weight:700; color:var(--paper); font-size:14px; }
+  .testi-person .name{ font-size:13.5px; font-weight:600; color:var(--navy); }
+  .testi-person .role{ font-size:12px; color:var(--muted); }
+
+  /* ---------- CTA band ---------- */
+  .cta-band{ background:var(--sand); }
+  .cta-inner{ background:var(--navy); border-radius:24px; padding:64px 64px; display:flex; justify-content:space-between; align-items:center; gap:40px; position:relative; overflow:hidden; }
+  .cta-inner::before{ content:""; position:absolute; right:-60px; top:-60px; width:220px; height:220px; border-radius:50%; background:radial-gradient(circle, rgba(232,163,61,.35), transparent 70%); }
+  .cta-inner h2{ color:var(--paper); font-size:30px; max-width:480px; }
+  .cta-inner p{ color:#B9CBD1; margin-top:10px; font-size:14.5px; }
+  .cta-right{ flex:0 0 auto; }
+
+  /* ---------- Footer ---------- */
+  footer{ background:var(--navy); color:#9FB3BA; padding:64px 0 28px; border-top:1px solid rgba(255,255,255,.06); }
+  .foot-grid{ display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr; gap:40px; margin-bottom:48px; }
+  .foot-logo{ display:flex; align-items:center; gap:10px; font-family:'Fraunces',serif; font-weight:700; font-size:19px; color:var(--paper); margin-bottom:14px; }
+  footer p.desc{ font-size:13.5px; max-width:260px; line-height:1.6; }
+  .foot-col h4{ font-size:12.5px; color:var(--paper); letter-spacing:.06em; text-transform:uppercase; margin-bottom:16px; font-weight:600; }
+  .foot-col ul{ list-style:none; display:flex; flex-direction:column; gap:10px; }
+  .foot-col a{ font-size:13.5px; }
+  .foot-col a:hover{ color:var(--paper); }
+  .foot-bottom{ border-top:1px solid rgba(255,255,255,.08); padding-top:24px; display:flex; justify-content:space-between; font-size:12.5px; flex-wrap:wrap; gap:10px; }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 980px){
+    nav.links{ display:none; }
+    .hero-grid{ grid-template-columns:1fr; }
+    .hero h1{ font-size:38px; }
+    .services-grid, .testi-grid{ grid-template-columns:1fr; }
+    .steps{ grid-template-columns:1fr 1fr; row-gap:36px; }
+    .steps::before{ display:none; }
+    .commit-grid{ grid-template-columns:1fr; gap:40px; }
+    .stat-row{ grid-template-columns:1fr 1fr; }
+    .cta-inner{ flex-direction:column; text-align:center; padding:44px 28px; }
+    .foot-grid{ grid-template-columns:1fr 1fr; }
+  }
+
+  /* Mockup ribbon */
+  .mock-ribbon{
+    position:fixed; bottom:18px; right:18px; z-index:100;
+    background:var(--ink); color:#fff; font-family:'IBM Plex Mono',monospace;
+    font-size:11px; padding:9px 14px; border-radius:8px; opacity:.85;
+    box-shadow:0 8px 24px rgba(0,0,0,.25);
+  }
+
+  /* ---- Services page extras ---- */
+  .svc-hero{ background:var(--navy); color:var(--paper); padding:72px 0 64px; }
+  .svc-hero .eyebrow{ color:var(--gold); }
+  .svc-hero h1{ font-size:44px; color:var(--paper); margin:14px 0 16px; max-width:680px; }
+  .svc-hero p{ color:#C9D8DE; font-size:16.5px; max-width:560px; }
+
+  .svc-detail{ display:grid; grid-template-columns:.9fr 1.1fr; gap:56px; align-items:start; padding:64px 0; border-bottom:1px solid var(--line); }
+  .svc-detail:last-of-type{ border-bottom:none; }
+  .svc-detail.reverse{ direction:rtl; }
+  .svc-detail.reverse > *{ direction:ltr; }
+  .svc-visual{ background:var(--sand); border-radius:20px; padding:36px; min-height:280px; display:flex; flex-direction:column; justify-content:center; gap:16px; }
+  .svc-visual .big-icon{ width:64px; height:64px; border-radius:16px; background:var(--navy); color:var(--gold); display:flex; align-items:center; justify-content:center; font-size:28px; margin-bottom:6px; }
+  .svc-visual .tag-row{ display:flex; gap:8px; flex-wrap:wrap; }
+  .tag{ background:var(--paper); border:1px solid var(--line); border-radius:999px; padding:6px 14px; font-size:12px; font-weight:600; color:var(--navy); }
+  .svc-copy .eyebrow{ color:var(--gold-deep); }
+  .svc-copy h2{ font-size:28px; color:var(--navy); margin:12px 0 14px; }
+  .svc-copy p.desc{ color:var(--muted); font-size:15.5px; margin-bottom:22px; }
+  .svc-cols{ display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-bottom:26px; }
+  .svc-cols h4{ font-size:12.5px; text-transform:uppercase; letter-spacing:.05em; color:var(--navy); margin-bottom:10px; font-weight:600; }
+  .svc-cols ul{ list-style:none; display:flex; flex-direction:column; gap:8px; }
+  .svc-cols li{ font-size:13.5px; color:var(--ink); display:flex; gap:8px; }
+  .svc-cols li::before{ content:"—"; color:var(--gold-deep); }
+
+  .tiers{ display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+  .tier{ border:1px solid var(--line); border-radius:18px; padding:32px 28px; background:var(--paper); }
+  .tier.featured{ border-color:var(--navy); box-shadow:0 18px 40px rgba(15,42,61,.1); position:relative; }
+  .tier.featured::before{ content:"MOST CHOSEN"; position:absolute; top:-12px; left:28px; background:var(--gold); color:var(--navy); font-family:'IBM Plex Mono',monospace; font-size:10px; font-weight:600; letter-spacing:.08em; padding:5px 12px; border-radius:999px; }
+  .tier h3{ font-size:19px; color:var(--navy); margin-bottom:6px; }
+  .tier .price{ font-family:'Fraunces',serif; font-size:32px; color:var(--navy); margin:14px 0 4px; }
+  .tier .price span{ font-family:'IBM Plex Sans',sans-serif; font-size:13px; color:var(--muted); font-weight:400; }
+  .tier p.desc{ font-size:13.5px; color:var(--muted); margin-bottom:20px; }
+  .tier ul{ list-style:none; display:flex; flex-direction:column; gap:10px; margin-bottom:24px; }
+  .tier li{ font-size:13.5px; color:var(--ink); display:flex; gap:8px; }
+  .tier li::before{ content:"✓"; color:var(--mint); font-weight:700; }
+
+  .faq-item{ border-bottom:1px solid var(--line); padding:22px 0; }
+  .faq-item h4{ font-size:15.5px; color:var(--navy); margin-bottom:8px; font-weight:600; }
+  .faq-item p{ font-size:14px; color:var(--muted); max-width:640px; }
+
+  @media (max-width: 980px){
+    .svc-detail, .svc-detail.reverse{ grid-template-columns:1fr; direction:ltr; }
+    .svc-cols{ grid-template-columns:1fr; }
+    .tiers{ grid-template-columns:1fr; }
+  }
+
+/* ---- Clock bridge (signature element) ---- */
+  .bridge{
+    background:var(--navy-2);
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:20px;
+    padding:26px 26px 22px;
+    position:relative;
+  }
+  .bridge-label{ display:flex; justify-content:space-between; align-items:center; margin-bottom:18px; }
+  .bridge-label .eyebrow{ color:#9FD9C9; }
+  .live{ display:flex; align-items:center; gap:6px; font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--mint); }
+  .live .pulse{ width:7px; height:7px; border-radius:50%; background:var(--mint); box-shadow:0 0 0 0 rgba(79,189,163,.6); animation:pulse 2s infinite; }
+  @keyframes pulse{ 0%{box-shadow:0 0 0 0 rgba(79,189,163,.55);} 70%{box-shadow:0 0 0 8px rgba(79,189,163,0);} 100%{box-shadow:0 0 0 0 rgba(79,189,163,0);} }
+
+  .cities{ display:flex; align-items:center; justify-content:space-between; position:relative; padding:10px 4px 4px; }
+  .city{ text-align:center; flex:0 0 auto; width:120px; }
+  .city .place{ font-size:13px; font-weight:600; color:var(--paper); }
+  .city .country{ font-size:11px; color:#8FA6AF; margin-bottom:10px; }
+  .city .time{ font-family:'IBM Plex Mono', monospace; font-size:26px; font-weight:500; color:var(--gold); letter-spacing:.02em; }
+  .city .tz{ font-size:10.5px; color:#8FA6AF; margin-top:4px; }
+  .arc-wrap{ flex:1; height:40px; position:relative; }
+  .arc-wrap svg{ width:100%; height:100%; overflow:visible; }
+  .bridge-foot{ margin-top:20px; padding-top:16px; border-top:1px solid rgba(255,255,255,.08); font-size:12px; color:#9FB3BA; line-height:1.55; }
+  .bridge-foot strong{ color:#DCE7EA; }
+
+  /* ---------- Trust strip ---------- */
+  .trust-strip{ background:var(--paper); border-bottom:1px solid var(--line); padding:26px 0; }
+  .trust-strip .wrap{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; }
+  .trust-item{ display:flex; align-items:center; gap:10px; font-size:13px; color:var(--muted); font-weight:500; }
+  .trust-item .ico{ width:26px; height:26px; border-radius:50%; background:var(--sand); display:flex; align-items:center; justify-content:center; color:var(--navy); font-size:13px; font-weight:700; font-family:'Fraunces',serif; flex:0 0 auto;}
+
+  /* ---------- Section shell ---------- */
+  section{ padding:96px 0; }
+  .section-sand{ background:var(--sand); }
+  .head-block{ max-width:620px; margin-bottom:56px; }
+  .head-block .eyebrow{ color:var(--gold-deep); }
+  .head-block h2{ font-size:36px; margin:14px 0 14px; color:var(--navy); }
+  .head-block p{ color:var(--muted); font-size:16px; }
+
+  /* ---------- Services ---------- */
+  .services-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+  .service-card{
+    background:var(--paper); border:1px solid var(--line); border-radius:18px;
+    padding:32px 28px; transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+  }
+  .service-card:hover{ transform:translateY(-4px); box-shadow:0 18px 40px rgba(15,42,61,.08); border-color:transparent; }
+  .service-icon{ width:52px; height:52px; border-radius:14px; display:flex; align-items:center; justify-content:center; font-size:22px; margin-bottom:22px; }
+  .service-card:nth-child(1) .service-icon{ background:#FDECD2; color:var(--gold-deep); }
+  .service-card:nth-child(2) .service-icon{ background:#DCEEE9; color:#1F7A64; }
+  .service-card:nth-child(3) .service-icon{ background:#E4EEF3; color:var(--navy-3); }
+  .service-card h3{ font-size:20px; color:var(--navy); margin-bottom:10px; }
+  .service-card p{ color:var(--muted); font-size:14.5px; margin-bottom:18px; }
+  .service-list{ list-style:none; display:flex; flex-direction:column; gap:8px; margin-bottom:22px; }
+  .service-list li{ font-size:13.5px; color:var(--ink); display:flex; gap:8px; align-items:flex-start; }
+  .service-list li::before{ content:"—"; color:var(--gold-deep); flex:0 0 auto; }
+  .service-card .link{ font-size:13.5px; font-weight:600; color:var(--navy); border-bottom:1.5px solid var(--gold); padding-bottom:2px; }
+
+  /* ---------- How it works ---------- */
+  .steps{ display:grid; grid-template-columns:repeat(4,1fr); gap:0; position:relative; }
+  .steps::before{ content:""; position:absolute; top:26px; left:6%; right:6%; height:1px; background:repeating-linear-gradient(90deg, var(--line) 0 8px, transparent 8px 16px); }
+  .step{ position:relative; padding-right:20px; }
+  .step-num{ width:52px; height:52px; border-radius:50%; background:var(--navy); color:var(--paper); font-family:'Fraunces',serif; font-weight:600; font-size:19px; display:flex; align-items:center; justify-content:center; margin-bottom:22px; position:relative; z-index:2; }
+  .step h3{ font-size:17px; color:var(--navy); margin-bottom:8px; font-family:'IBM Plex Sans',sans-serif; font-weight:600; }
+  .step p{ font-size:13.5px; color:var(--muted); }
+
+  /* ---------- Commitment / ethical section ---------- */
+  .commit{ background:var(--navy); color:var(--paper); }
+  .commit-grid{ display:grid; grid-template-columns:.95fr 1.05fr; gap:64px; align-items:start; }
+  .commit .eyebrow{ color:var(--mint); }
+  .commit h2{ color:var(--paper); font-size:34px; margin:14px 0 20px; }
+  .commit p.lead{ color:#C9D8DE; font-size:16px; max-width:460px; margin-bottom:8px; }
+  .pillars{ display:flex; flex-direction:column; gap:0; }
+  .pillar{ display:flex; gap:18px; padding:22px 0; border-bottom:1px solid rgba(255,255,255,.1); }
+  .pillar:first-child{ padding-top:0; }
+  .pillar-mark{ width:38px; height:38px; border-radius:10px; background:rgba(232,163,61,.14); color:var(--gold); display:flex; align-items:center; justify-content:center; font-family:'Fraunces',serif; font-weight:700; font-size:15px; flex:0 0 auto; }
+  .pillar h3{ font-family:'IBM Plex Sans',sans-serif; font-size:15.5px; font-weight:600; margin-bottom:5px; color:var(--paper); }
+  .pillar p{ font-size:13.5px; color:#9FB3BA; }
+  .stat-row{ display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:38px; }
+  .stat{ background:var(--navy-2); border:1px solid rgba(255,255,255,.08); border-radius:14px; padding:20px 18px; }
+  .stat .num{ font-family:'Fraunces',serif; font-size:30px; color:var(--gold); font-weight:600; }
+  .stat .lbl{ font-size:12px; color:#9FB3BA; margin-top:4px; }
+
+  /* ---------- Testimonials ---------- */
+  .testi-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+  .testi-card{ background:var(--paper); border:1px solid var(--line); border-radius:18px; padding:30px; display:flex; flex-direction:column; gap:18px; }
+  .stars{ color:var(--gold); font-size:14px; letter-spacing:2px; }
+  .testi-card p.quote{ font-size:14.5px; color:var(--ink); line-height:1.65; }
+  .testi-person{ display:flex; align-items:center; gap:12px; margin-top:auto; }
+  .avatar{ width:38px; height:38px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-family:'Fraunces',serif; font-weight:700; color:var(--paper); font-size:14px; }
+  .testi-person .name{ font-size:13.5px; font-weight:600; color:var(--navy); }
+  .testi-person .role{ font-size:12px; color:var(--muted); }
+
+  /* ---------- CTA band ---------- */
+  .cta-band{ background:var(--sand); }
+  .cta-inner{ background:var(--navy); border-radius:24px; padding:64px 64px; display:flex; justify-content:space-between; align-items:center; gap:40px; position:relative; overflow:hidden; }
+  .cta-inner::before{ content:""; position:absolute; right:-60px; top:-60px; width:220px; height:220px; border-radius:50%; background:radial-gradient(circle, rgba(232,163,61,.35), transparent 70%); }
+  .cta-inner h2{ color:var(--paper); font-size:30px; max-width:480px; }
+  .cta-inner p{ color:#B9CBD1; margin-top:10px; font-size:14.5px; }
+  .cta-right{ flex:0 0 auto; }
+
+  /* ---------- Footer ---------- */
+  footer{ background:var(--navy); color:#9FB3BA; padding:64px 0 28px; border-top:1px solid rgba(255,255,255,.06); }
+  .foot-grid{ display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr; gap:40px; margin-bottom:48px; }
+  .foot-logo{ display:flex; align-items:center; gap:10px; font-family:'Fraunces',serif; font-weight:700; font-size:19px; color:var(--paper); margin-bottom:14px; }
+  footer p.desc{ font-size:13.5px; max-width:260px; line-height:1.6; }
+  .foot-col h4{ font-size:12.5px; color:var(--paper); letter-spacing:.06em; text-transform:uppercase; margin-bottom:16px; font-weight:600; }
+  .foot-col ul{ list-style:none; display:flex; flex-direction:column; gap:10px; }
+  .foot-col a{ font-size:13.5px; }
+  .foot-col a:hover{ color:var(--paper); }
+  .foot-bottom{ border-top:1px solid rgba(255,255,255,.08); padding-top:24px; display:flex; justify-content:space-between; font-size:12.5px; flex-wrap:wrap; gap:10px; }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 980px){
+    nav.links{ display:none; }
+    .hero-grid{ grid-template-columns:1fr; }
+    .hero h1{ font-size:38px; }
+    .services-grid, .testi-grid{ grid-template-columns:1fr; }
+    .steps{ grid-template-columns:1fr 1fr; row-gap:36px; }
+    .steps::before{ display:none; }
+    .commit-grid{ grid-template-columns:1fr; gap:40px; }
+    .stat-row{ grid-template-columns:1fr 1fr; }
+    .cta-inner{ flex-direction:column; text-align:center; padding:44px 28px; }
+    .foot-grid{ grid-template-columns:1fr 1fr; }
+  }
+
+  /* Mockup ribbon */
+  .mock-ribbon{
+    position:fixed; bottom:18px; right:18px; z-index:100;
+    background:var(--ink); color:#fff; font-family:'IBM Plex Mono',monospace;
+    font-size:11px; padding:9px 14px; border-radius:8px; opacity:.85;
+    box-shadow:0 8px 24px rgba(0,0,0,.25);
+  }
+
+  /* ---- About page extras ---- */
+  .about-hero{ background:var(--navy); color:var(--paper); padding:72px 0 64px; }
+  .about-hero .eyebrow{ color:var(--gold); }
+  .about-hero h1{ font-size:44px; color:var(--paper); margin:14px 0 16px; max-width:700px; }
+  .about-hero p{ color:#C9D8DE; font-size:16.5px; max-width:560px; }
+
+  .story{ display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:center; }
+  .story-visual{ background:var(--sand); border-radius:20px; padding:40px; min-height:340px; display:flex; flex-direction:column; justify-content:center; gap:22px; }
+  .story-visual .yr{ font-family:'Fraunces',serif; font-size:44px; color:var(--navy); font-weight:600; }
+  .story-visual .yr-lbl{ font-size:12.5px; color:var(--muted); text-transform:uppercase; letter-spacing:.06em; }
+
+  .timeline{ position:relative; padding-left:38px; }
+  .timeline::before{ content:""; position:absolute; left:9px; top:6px; bottom:6px; width:1px; background:var(--line); }
+  .tl-item{ position:relative; padding-bottom:40px; }
+  .tl-item:last-child{ padding-bottom:0; }
+  .tl-dot{ position:absolute; left:-38px; top:2px; width:20px; height:20px; border-radius:50%; background:var(--navy); border:4px solid var(--sand); }
+  .tl-item h4{ font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--gold-deep); margin-bottom:6px; letter-spacing:.04em; }
+  .tl-item h3{ font-size:17px; color:var(--navy); margin-bottom:6px; font-family:'IBM Plex Sans',sans-serif; font-weight:600; }
+  .tl-item p{ font-size:13.5px; color:var(--muted); max-width:440px; }
+
+  .team-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:22px; }
+  .team-card{ text-align:center; }
+  .team-avatar{ width:100%; aspect-ratio:1; border-radius:16px; margin-bottom:14px; display:flex; align-items:center; justify-content:center; font-family:'Fraunces',serif; font-size:32px; font-weight:700; color:var(--paper); }
+  .team-card .name{ font-size:14.5px; font-weight:600; color:var(--navy); }
+  .team-card .role{ font-size:12.5px; color:var(--muted); margin-top:2px; }
+
+  @media (max-width: 980px){
+    .story{ grid-template-columns:1fr; }
+    .team-grid{ grid-template-columns:1fr 1fr; }
+  }
+
+/* ---- Clock bridge (signature element) ---- */
+  .bridge{
+    background:var(--navy-2);
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:20px;
+    padding:26px 26px 22px;
+    position:relative;
+  }
+  .bridge-label{ display:flex; justify-content:space-between; align-items:center; margin-bottom:18px; }
+  .bridge-label .eyebrow{ color:#9FD9C9; }
+  .live{ display:flex; align-items:center; gap:6px; font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--mint); }
+  .live .pulse{ width:7px; height:7px; border-radius:50%; background:var(--mint); box-shadow:0 0 0 0 rgba(79,189,163,.6); animation:pulse 2s infinite; }
+  @keyframes pulse{ 0%{box-shadow:0 0 0 0 rgba(79,189,163,.55);} 70%{box-shadow:0 0 0 8px rgba(79,189,163,0);} 100%{box-shadow:0 0 0 0 rgba(79,189,163,0);} }
+
+  .cities{ display:flex; align-items:center; justify-content:space-between; position:relative; padding:10px 4px 4px; }
+  .city{ text-align:center; flex:0 0 auto; width:120px; }
+  .city .place{ font-size:13px; font-weight:600; color:var(--paper); }
+  .city .country{ font-size:11px; color:#8FA6AF; margin-bottom:10px; }
+  .city .time{ font-family:'IBM Plex Mono', monospace; font-size:26px; font-weight:500; color:var(--gold); letter-spacing:.02em; }
+  .city .tz{ font-size:10.5px; color:#8FA6AF; margin-top:4px; }
+  .arc-wrap{ flex:1; height:40px; position:relative; }
+  .arc-wrap svg{ width:100%; height:100%; overflow:visible; }
+  .bridge-foot{ margin-top:20px; padding-top:16px; border-top:1px solid rgba(255,255,255,.08); font-size:12px; color:#9FB3BA; line-height:1.55; }
+  .bridge-foot strong{ color:#DCE7EA; }
+
+  /* ---------- Trust strip ---------- */
+  .trust-strip{ background:var(--paper); border-bottom:1px solid var(--line); padding:26px 0; }
+  .trust-strip .wrap{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; }
+  .trust-item{ display:flex; align-items:center; gap:10px; font-size:13px; color:var(--muted); font-weight:500; }
+  .trust-item .ico{ width:26px; height:26px; border-radius:50%; background:var(--sand); display:flex; align-items:center; justify-content:center; color:var(--navy); font-size:13px; font-weight:700; font-family:'Fraunces',serif; flex:0 0 auto;}
+
+  /* ---------- Section shell ---------- */
+  section{ padding:96px 0; }
+  .section-sand{ background:var(--sand); }
+  .head-block{ max-width:620px; margin-bottom:56px; }
+  .head-block .eyebrow{ color:var(--gold-deep); }
+  .head-block h2{ font-size:36px; margin:14px 0 14px; color:var(--navy); }
+  .head-block p{ color:var(--muted); font-size:16px; }
+
+  /* ---------- Services ---------- */
+  .services-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+  .service-card{
+    background:var(--paper); border:1px solid var(--line); border-radius:18px;
+    padding:32px 28px; transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+  }
+  .service-card:hover{ transform:translateY(-4px); box-shadow:0 18px 40px rgba(15,42,61,.08); border-color:transparent; }
+  .service-icon{ width:52px; height:52px; border-radius:14px; display:flex; align-items:center; justify-content:center; font-size:22px; margin-bottom:22px; }
+  .service-card:nth-child(1) .service-icon{ background:#FDECD2; color:var(--gold-deep); }
+  .service-card:nth-child(2) .service-icon{ background:#DCEEE9; color:#1F7A64; }
+  .service-card:nth-child(3) .service-icon{ background:#E4EEF3; color:var(--navy-3); }
+  .service-card h3{ font-size:20px; color:var(--navy); margin-bottom:10px; }
+  .service-card p{ color:var(--muted); font-size:14.5px; margin-bottom:18px; }
+  .service-list{ list-style:none; display:flex; flex-direction:column; gap:8px; margin-bottom:22px; }
+  .service-list li{ font-size:13.5px; color:var(--ink); display:flex; gap:8px; align-items:flex-start; }
+  .service-list li::before{ content:"—"; color:var(--gold-deep); flex:0 0 auto; }
+  .service-card .link{ font-size:13.5px; font-weight:600; color:var(--navy); border-bottom:1.5px solid var(--gold); padding-bottom:2px; }
+
+  /* ---------- How it works ---------- */
+  .steps{ display:grid; grid-template-columns:repeat(4,1fr); gap:0; position:relative; }
+  .steps::before{ content:""; position:absolute; top:26px; left:6%; right:6%; height:1px; background:repeating-linear-gradient(90deg, var(--line) 0 8px, transparent 8px 16px); }
+  .step{ position:relative; padding-right:20px; }
+  .step-num{ width:52px; height:52px; border-radius:50%; background:var(--navy); color:var(--paper); font-family:'Fraunces',serif; font-weight:600; font-size:19px; display:flex; align-items:center; justify-content:center; margin-bottom:22px; position:relative; z-index:2; }
+  .step h3{ font-size:17px; color:var(--navy); margin-bottom:8px; font-family:'IBM Plex Sans',sans-serif; font-weight:600; }
+  .step p{ font-size:13.5px; color:var(--muted); }
+
+  /* ---------- Commitment / ethical section ---------- */
+  .commit{ background:var(--navy); color:var(--paper); }
+  .commit-grid{ display:grid; grid-template-columns:.95fr 1.05fr; gap:64px; align-items:start; }
+  .commit .eyebrow{ color:var(--mint); }
+  .commit h2{ color:var(--paper); font-size:34px; margin:14px 0 20px; }
+  .commit p.lead{ color:#C9D8DE; font-size:16px; max-width:460px; margin-bottom:8px; }
+  .pillars{ display:flex; flex-direction:column; gap:0; }
+  .pillar{ display:flex; gap:18px; padding:22px 0; border-bottom:1px solid rgba(255,255,255,.1); }
+  .pillar:first-child{ padding-top:0; }
+  .pillar-mark{ width:38px; height:38px; border-radius:10px; background:rgba(232,163,61,.14); color:var(--gold); display:flex; align-items:center; justify-content:center; font-family:'Fraunces',serif; font-weight:700; font-size:15px; flex:0 0 auto; }
+  .pillar h3{ font-family:'IBM Plex Sans',sans-serif; font-size:15.5px; font-weight:600; margin-bottom:5px; color:var(--paper); }
+  .pillar p{ font-size:13.5px; color:#9FB3BA; }
+  .stat-row{ display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:38px; }
+  .stat{ background:var(--navy-2); border:1px solid rgba(255,255,255,.08); border-radius:14px; padding:20px 18px; }
+  .stat .num{ font-family:'Fraunces',serif; font-size:30px; color:var(--gold); font-weight:600; }
+  .stat .lbl{ font-size:12px; color:#9FB3BA; margin-top:4px; }
+
+  /* ---------- Testimonials ---------- */
+  .testi-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+  .testi-card{ background:var(--paper); border:1px solid var(--line); border-radius:18px; padding:30px; display:flex; flex-direction:column; gap:18px; }
+  .stars{ color:var(--gold); font-size:14px; letter-spacing:2px; }
+  .testi-card p.quote{ font-size:14.5px; color:var(--ink); line-height:1.65; }
+  .testi-person{ display:flex; align-items:center; gap:12px; margin-top:auto; }
+  .avatar{ width:38px; height:38px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-family:'Fraunces',serif; font-weight:700; color:var(--paper); font-size:14px; }
+  .testi-person .name{ font-size:13.5px; font-weight:600; color:var(--navy); }
+  .testi-person .role{ font-size:12px; color:var(--muted); }
+
+  /* ---------- CTA band ---------- */
+  .cta-band{ background:var(--sand); }
+  .cta-inner{ background:var(--navy); border-radius:24px; padding:64px 64px; display:flex; justify-content:space-between; align-items:center; gap:40px; position:relative; overflow:hidden; }
+  .cta-inner::before{ content:""; position:absolute; right:-60px; top:-60px; width:220px; height:220px; border-radius:50%; background:radial-gradient(circle, rgba(232,163,61,.35), transparent 70%); }
+  .cta-inner h2{ color:var(--paper); font-size:30px; max-width:480px; }
+  .cta-inner p{ color:#B9CBD1; margin-top:10px; font-size:14.5px; }
+  .cta-right{ flex:0 0 auto; }
+
+  /* ---------- Footer ---------- */
+  footer{ background:var(--navy); color:#9FB3BA; padding:64px 0 28px; border-top:1px solid rgba(255,255,255,.06); }
+  .foot-grid{ display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr; gap:40px; margin-bottom:48px; }
+  .foot-logo{ display:flex; align-items:center; gap:10px; font-family:'Fraunces',serif; font-weight:700; font-size:19px; color:var(--paper); margin-bottom:14px; }
+  footer p.desc{ font-size:13.5px; max-width:260px; line-height:1.6; }
+  .foot-col h4{ font-size:12.5px; color:var(--paper); letter-spacing:.06em; text-transform:uppercase; margin-bottom:16px; font-weight:600; }
+  .foot-col ul{ list-style:none; display:flex; flex-direction:column; gap:10px; }
+  .foot-col a{ font-size:13.5px; }
+  .foot-col a:hover{ color:var(--paper); }
+  .foot-bottom{ border-top:1px solid rgba(255,255,255,.08); padding-top:24px; display:flex; justify-content:space-between; font-size:12.5px; flex-wrap:wrap; gap:10px; }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 980px){
+    nav.links{ display:none; }
+    .hero-grid{ grid-template-columns:1fr; }
+    .hero h1{ font-size:38px; }
+    .services-grid, .testi-grid{ grid-template-columns:1fr; }
+    .steps{ grid-template-columns:1fr 1fr; row-gap:36px; }
+    .steps::before{ display:none; }
+    .commit-grid{ grid-template-columns:1fr; gap:40px; }
+    .stat-row{ grid-template-columns:1fr 1fr; }
+    .cta-inner{ flex-direction:column; text-align:center; padding:44px 28px; }
+    .foot-grid{ grid-template-columns:1fr 1fr; }
+  }
+
+  /* Mockup ribbon */
+  .mock-ribbon{
+    position:fixed; bottom:18px; right:18px; z-index:100;
+    background:var(--ink); color:#fff; font-family:'IBM Plex Mono',monospace;
+    font-size:11px; padding:9px 14px; border-radius:8px; opacity:.85;
+    box-shadow:0 8px 24px rgba(0,0,0,.25);
+  }
+
+  /* ---- Careers page extras ---- */
+  .careers-hero{ background:var(--navy); color:var(--paper); padding:72px 0 64px; }
+  .careers-hero .eyebrow{ color:var(--mint); }
+  .careers-hero h1{ font-size:44px; color:var(--paper); margin:14px 0 16px; max-width:680px; }
+  .careers-hero p{ color:#C9D8DE; font-size:16.5px; max-width:560px; }
+
+  .benefit-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:22px; }
+  .benefit-card{ background:var(--paper); border:1px solid var(--line); border-radius:16px; padding:26px 22px; }
+  .benefit-card .b-icon{ width:44px; height:44px; border-radius:12px; background:var(--sand); color:var(--navy); display:flex; align-items:center; justify-content:center; font-size:19px; margin-bottom:16px; }
+  .benefit-card h3{ font-size:15px; color:var(--navy); margin-bottom:6px; font-family:'IBM Plex Sans',sans-serif; font-weight:600; }
+  .benefit-card p{ font-size:13px; color:var(--muted); }
+
+  .job-list{ display:flex; flex-direction:column; gap:14px; }
+  .job-card{ display:flex; align-items:center; justify-content:space-between; background:var(--paper); border:1px solid var(--line); border-radius:14px; padding:22px 26px; gap:20px; transition:border-color .2s ease, transform .2s ease; }
+  .job-card:hover{ border-color:var(--navy); transform:translateX(2px); }
+  .job-main{ display:flex; align-items:center; gap:16px; }
+  .job-badge{ width:44px; height:44px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:18px; flex:0 0 auto; }
+  .job-title{ font-size:15.5px; font-weight:600; color:var(--navy); }
+  .job-meta{ font-size:12.5px; color:var(--muted); margin-top:3px; display:flex; gap:10px; }
+  .job-meta span::after{ content:"·"; margin-left:10px; color:var(--line); }
+  .job-meta span:last-child::after{ content:""; }
+
+  .culture-quote{ background:var(--navy); color:var(--paper); border-radius:20px; padding:48px; display:grid; grid-template-columns:auto 1fr; gap:26px; align-items:center; }
+  .culture-quote .qmark{ font-family:'Fraunces',serif; font-size:64px; color:var(--gold); line-height:1; }
+  .culture-quote p.q{ font-size:18px; line-height:1.6; color:#E7EEF0; margin-bottom:14px; }
+  .culture-quote .who{ font-size:13.5px; color:#9FB3BA; }
+
+  @media (max-width: 980px){
+    .benefit-grid{ grid-template-columns:1fr 1fr; }
+    .job-card{ flex-direction:column; align-items:flex-start; }
+    .culture-quote{ grid-template-columns:1fr; text-align:left; padding:32px; }
+  }
+
+/* ---- Clock bridge (signature element) ---- */
+  .bridge{
+    background:var(--navy-2);
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:20px;
+    padding:26px 26px 22px;
+    position:relative;
+  }
+  .bridge-label{ display:flex; justify-content:space-between; align-items:center; margin-bottom:18px; }
+  .bridge-label .eyebrow{ color:#9FD9C9; }
+  .live{ display:flex; align-items:center; gap:6px; font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--mint); }
+  .live .pulse{ width:7px; height:7px; border-radius:50%; background:var(--mint); box-shadow:0 0 0 0 rgba(79,189,163,.6); animation:pulse 2s infinite; }
+  @keyframes pulse{ 0%{box-shadow:0 0 0 0 rgba(79,189,163,.55);} 70%{box-shadow:0 0 0 8px rgba(79,189,163,0);} 100%{box-shadow:0 0 0 0 rgba(79,189,163,0);} }
+
+  .cities{ display:flex; align-items:center; justify-content:space-between; position:relative; padding:10px 4px 4px; }
+  .city{ text-align:center; flex:0 0 auto; width:120px; }
+  .city .place{ font-size:13px; font-weight:600; color:var(--paper); }
+  .city .country{ font-size:11px; color:#8FA6AF; margin-bottom:10px; }
+  .city .time{ font-family:'IBM Plex Mono', monospace; font-size:26px; font-weight:500; color:var(--gold); letter-spacing:.02em; }
+  .city .tz{ font-size:10.5px; color:#8FA6AF; margin-top:4px; }
+  .arc-wrap{ flex:1; height:40px; position:relative; }
+  .arc-wrap svg{ width:100%; height:100%; overflow:visible; }
+  .bridge-foot{ margin-top:20px; padding-top:16px; border-top:1px solid rgba(255,255,255,.08); font-size:12px; color:#9FB3BA; line-height:1.55; }
+  .bridge-foot strong{ color:#DCE7EA; }
+
+  /* ---------- Trust strip ---------- */
+  .trust-strip{ background:var(--paper); border-bottom:1px solid var(--line); padding:26px 0; }
+  .trust-strip .wrap{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; }
+  .trust-item{ display:flex; align-items:center; gap:10px; font-size:13px; color:var(--muted); font-weight:500; }
+  .trust-item .ico{ width:26px; height:26px; border-radius:50%; background:var(--sand); display:flex; align-items:center; justify-content:center; color:var(--navy); font-size:13px; font-weight:700; font-family:'Fraunces',serif; flex:0 0 auto;}
+
+  /* ---------- Section shell ---------- */
+  section{ padding:96px 0; }
+  .section-sand{ background:var(--sand); }
+  .head-block{ max-width:620px; margin-bottom:56px; }
+  .head-block .eyebrow{ color:var(--gold-deep); }
+  .head-block h2{ font-size:36px; margin:14px 0 14px; color:var(--navy); }
+  .head-block p{ color:var(--muted); font-size:16px; }
+
+  /* ---------- Services ---------- */
+  .services-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+  .service-card{
+    background:var(--paper); border:1px solid var(--line); border-radius:18px;
+    padding:32px 28px; transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+  }
+  .service-card:hover{ transform:translateY(-4px); box-shadow:0 18px 40px rgba(15,42,61,.08); border-color:transparent; }
+  .service-icon{ width:52px; height:52px; border-radius:14px; display:flex; align-items:center; justify-content:center; font-size:22px; margin-bottom:22px; }
+  .service-card:nth-child(1) .service-icon{ background:#FDECD2; color:var(--gold-deep); }
+  .service-card:nth-child(2) .service-icon{ background:#DCEEE9; color:#1F7A64; }
+  .service-card:nth-child(3) .service-icon{ background:#E4EEF3; color:var(--navy-3); }
+  .service-card h3{ font-size:20px; color:var(--navy); margin-bottom:10px; }
+  .service-card p{ color:var(--muted); font-size:14.5px; margin-bottom:18px; }
+  .service-list{ list-style:none; display:flex; flex-direction:column; gap:8px; margin-bottom:22px; }
+  .service-list li{ font-size:13.5px; color:var(--ink); display:flex; gap:8px; align-items:flex-start; }
+  .service-list li::before{ content:"—"; color:var(--gold-deep); flex:0 0 auto; }
+  .service-card .link{ font-size:13.5px; font-weight:600; color:var(--navy); border-bottom:1.5px solid var(--gold); padding-bottom:2px; }
+
+  /* ---------- How it works ---------- */
+  .steps{ display:grid; grid-template-columns:repeat(4,1fr); gap:0; position:relative; }
+  .steps::before{ content:""; position:absolute; top:26px; left:6%; right:6%; height:1px; background:repeating-linear-gradient(90deg, var(--line) 0 8px, transparent 8px 16px); }
+  .step{ position:relative; padding-right:20px; }
+  .step-num{ width:52px; height:52px; border-radius:50%; background:var(--navy); color:var(--paper); font-family:'Fraunces',serif; font-weight:600; font-size:19px; display:flex; align-items:center; justify-content:center; margin-bottom:22px; position:relative; z-index:2; }
+  .step h3{ font-size:17px; color:var(--navy); margin-bottom:8px; font-family:'IBM Plex Sans',sans-serif; font-weight:600; }
+  .step p{ font-size:13.5px; color:var(--muted); }
+
+  /* ---------- Commitment / ethical section ---------- */
+  .commit{ background:var(--navy); color:var(--paper); }
+  .commit-grid{ display:grid; grid-template-columns:.95fr 1.05fr; gap:64px; align-items:start; }
+  .commit .eyebrow{ color:var(--mint); }
+  .commit h2{ color:var(--paper); font-size:34px; margin:14px 0 20px; }
+  .commit p.lead{ color:#C9D8DE; font-size:16px; max-width:460px; margin-bottom:8px; }
+  .pillars{ display:flex; flex-direction:column; gap:0; }
+  .pillar{ display:flex; gap:18px; padding:22px 0; border-bottom:1px solid rgba(255,255,255,.1); }
+  .pillar:first-child{ padding-top:0; }
+  .pillar-mark{ width:38px; height:38px; border-radius:10px; background:rgba(232,163,61,.14); color:var(--gold); display:flex; align-items:center; justify-content:center; font-family:'Fraunces',serif; font-weight:700; font-size:15px; flex:0 0 auto; }
+  .pillar h3{ font-family:'IBM Plex Sans',sans-serif; font-size:15.5px; font-weight:600; margin-bottom:5px; color:var(--paper); }
+  .pillar p{ font-size:13.5px; color:#9FB3BA; }
+  .stat-row{ display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:38px; }
+  .stat{ background:var(--navy-2); border:1px solid rgba(255,255,255,.08); border-radius:14px; padding:20px 18px; }
+  .stat .num{ font-family:'Fraunces',serif; font-size:30px; color:var(--gold); font-weight:600; }
+  .stat .lbl{ font-size:12px; color:#9FB3BA; margin-top:4px; }
+
+  /* ---------- Testimonials ---------- */
+  .testi-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+  .testi-card{ background:var(--paper); border:1px solid var(--line); border-radius:18px; padding:30px; display:flex; flex-direction:column; gap:18px; }
+  .stars{ color:var(--gold); font-size:14px; letter-spacing:2px; }
+  .testi-card p.quote{ font-size:14.5px; color:var(--ink); line-height:1.65; }
+  .testi-person{ display:flex; align-items:center; gap:12px; margin-top:auto; }
+  .avatar{ width:38px; height:38px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-family:'Fraunces',serif; font-weight:700; color:var(--paper); font-size:14px; }
+  .testi-person .name{ font-size:13.5px; font-weight:600; color:var(--navy); }
+  .testi-person .role{ font-size:12px; color:var(--muted); }
+
+  /* ---------- CTA band ---------- */
+  .cta-band{ background:var(--sand); }
+  .cta-inner{ background:var(--navy); border-radius:24px; padding:64px 64px; display:flex; justify-content:space-between; align-items:center; gap:40px; position:relative; overflow:hidden; }
+  .cta-inner::before{ content:""; position:absolute; right:-60px; top:-60px; width:220px; height:220px; border-radius:50%; background:radial-gradient(circle, rgba(232,163,61,.35), transparent 70%); }
+  .cta-inner h2{ color:var(--paper); font-size:30px; max-width:480px; }
+  .cta-inner p{ color:#B9CBD1; margin-top:10px; font-size:14.5px; }
+  .cta-right{ flex:0 0 auto; }
+
+  /* ---------- Footer ---------- */
+  footer{ background:var(--navy); color:#9FB3BA; padding:64px 0 28px; border-top:1px solid rgba(255,255,255,.06); }
+  .foot-grid{ display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr; gap:40px; margin-bottom:48px; }
+  .foot-logo{ display:flex; align-items:center; gap:10px; font-family:'Fraunces',serif; font-weight:700; font-size:19px; color:var(--paper); margin-bottom:14px; }
+  footer p.desc{ font-size:13.5px; max-width:260px; line-height:1.6; }
+  .foot-col h4{ font-size:12.5px; color:var(--paper); letter-spacing:.06em; text-transform:uppercase; margin-bottom:16px; font-weight:600; }
+  .foot-col ul{ list-style:none; display:flex; flex-direction:column; gap:10px; }
+  .foot-col a{ font-size:13.5px; }
+  .foot-col a:hover{ color:var(--paper); }
+  .foot-bottom{ border-top:1px solid rgba(255,255,255,.08); padding-top:24px; display:flex; justify-content:space-between; font-size:12.5px; flex-wrap:wrap; gap:10px; }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 980px){
+    nav.links{ display:none; }
+    .hero-grid{ grid-template-columns:1fr; }
+    .hero h1{ font-size:38px; }
+    .services-grid, .testi-grid{ grid-template-columns:1fr; }
+    .steps{ grid-template-columns:1fr 1fr; row-gap:36px; }
+    .steps::before{ display:none; }
+    .commit-grid{ grid-template-columns:1fr; gap:40px; }
+    .stat-row{ grid-template-columns:1fr 1fr; }
+    .cta-inner{ flex-direction:column; text-align:center; padding:44px 28px; }
+    .foot-grid{ grid-template-columns:1fr 1fr; }
+  }
+
+  /* Mockup ribbon */
+  .mock-ribbon{
+    position:fixed; bottom:18px; right:18px; z-index:100;
+    background:var(--ink); color:#fff; font-family:'IBM Plex Mono',monospace;
+    font-size:11px; padding:9px 14px; border-radius:8px; opacity:.85;
+    box-shadow:0 8px 24px rgba(0,0,0,.25);
+  }
+
+  /* ---- Contact page extras ---- */
+  .contact-hero{ background:var(--navy); color:var(--paper); padding:64px 0 56px; }
+  .contact-hero .eyebrow{ color:var(--gold); }
+  .contact-hero h1{ font-size:40px; color:var(--paper); margin:14px 0 12px; max-width:640px; }
+  .contact-hero p{ color:#C9D8DE; font-size:16px; max-width:520px; }
+
+  .contact-grid{ display:grid; grid-template-columns:1.1fr .9fr; gap:56px; align-items:start; }
+  .form-card{ background:var(--paper); border:1px solid var(--line); border-radius:20px; padding:40px; }
+  .form-row{ display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-bottom:18px; }
+  .field{ display:flex; flex-direction:column; gap:7px; }
+  .field.full{ grid-column:1 / -1; }
+  .field label{ font-size:12.5px; font-weight:600; color:var(--navy); }
+  .field input, .field select, .field textarea{
+    border:1px solid var(--line); border-radius:10px; padding:12px 14px; font-size:14px;
+    font-family:'IBM Plex Sans',sans-serif; color:var(--ink); background:var(--paper);
+  }
+  .field input:focus, .field select:focus, .field textarea:focus{ outline:2px solid var(--gold); outline-offset:1px; border-color:var(--gold); }
+  .field textarea{ resize:vertical; min-height:100px; }
+  .form-submit{ width:100%; justify-content:center; margin-top:6px; }
+
+  .info-card{ background:var(--navy); color:var(--paper); border-radius:20px; padding:34px; margin-bottom:20px; }
+  .info-row{ display:flex; gap:14px; padding:14px 0; border-bottom:1px solid rgba(255,255,255,.08); }
+  .info-row:last-child{ border-bottom:none; }
+  .info-ico{ width:36px; height:36px; border-radius:10px; background:rgba(232,163,61,.15); color:var(--gold); display:flex; align-items:center; justify-content:center; font-size:15px; flex:0 0 auto; }
+  .info-row .lbl{ font-size:11.5px; color:#9FB3BA; text-transform:uppercase; letter-spacing:.05em; margin-bottom:3px; }
+  .info-row .val{ font-size:14px; color:var(--paper); font-weight:500; }
+
+  .map-block{ border-radius:20px; overflow:hidden; border:1px solid var(--line); height:220px; background:
+      linear-gradient(135deg, var(--sand) 25%, transparent 25%) -10px 0/20px 20px,
+      linear-gradient(225deg, var(--sand) 25%, transparent 25%) -10px 0/20px 20px,
+      linear-gradient(315deg, var(--sand) 25%, transparent 25%) 0 0/20px 20px,
+      linear-gradient(45deg, var(--sand) 25%, #fff 25%) 0 0/20px 20px;
+    display:flex; align-items:center; justify-content:center; position:relative; }
+  .map-pin{ background:var(--navy); color:var(--paper); font-size:12.5px; font-weight:600; padding:10px 16px; border-radius:999px; display:flex; align-items:center; gap:8px; box-shadow:0 10px 24px rgba(15,42,61,.25); }
+  .map-pin::before{ content:"📍"; }
+
+  @media (max-width: 980px){
+    .contact-grid{ grid-template-columns:1fr; }
+    .form-row{ grid-template-columns:1fr; }
+  }
+
+
+  /* ---- SPA page switching ---- */
+  .page{ display:none; }
+  .page.active{ display:block; }
+
+  /* ---- Mini page-switcher bar (mockup aid) ---- */
+  .mock-nav{
+    position:fixed; bottom:18px; left:50%; transform:translateX(-50%); z-index:200;
+    background:var(--ink); border-radius:999px; padding:6px; display:flex; gap:2px;
+    box-shadow:0 12px 32px rgba(0,0,0,.3);
+  }
+  .mock-nav button{
+    font-family:'IBM Plex Mono',monospace; font-size:11px; color:#9FB3BA; background:transparent;
+    border:none; padding:9px 16px; border-radius:999px; cursor:pointer; transition:.15s ease;
+  }
+  .mock-nav button.active{ background:var(--gold); color:var(--navy); font-weight:600; }
+  .mock-nav button:hover:not(.active){ color:#fff; }
+</style>
+</head>
+<body>
+
+
+
+<header>
+  <div class="nav">
+    <div class="logo"><span class="logo-mark"></span>VeriStaff</div>
+    <nav class="links">
+      <a href="#home" onclick="go('home');return false;" data-nav="home">Home</a>
+      <a href="#services" onclick="go('services');return false;" data-nav="services">Services</a>
+      <a href="#about" onclick="go('about');return false;" data-nav="about">About Us</a>
+      <a href="#careers" onclick="go('careers');return false;" data-nav="careers">Careers</a>
+      <a href="#contact" onclick="go('contact');return false;" data-nav="contact">Contact</a>
+    </nav>
+    <div class="nav-cta">
+      <a href="#careers" onclick="go('careers');return false;" style="font-size:14px; font-weight:500;">We're Hiring</a>
+      <a href="#contact" onclick="go('contact');return false;" class="btn btn-outline-navy">Book a Call</a>
+    </div>
+  </div>
+</header>
+
+<div id="page-home" class="page">
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow">Ethical Outsourcing, Since Day One</div>
+      <h1>Grow your team <em>without</em> compromising who you are.</h1>
+      <p class="lead">VeriStaff places vetted medical receptionists, bookkeepers, and virtual assistants with Australian businesses — fairly paid, transparently based, and managed with integrity from day one.</p>
+      <div class="hero-actions">
+        <a href="#contact" onclick="go('contact');return false;" class="btn btn-gold">Book a Free Consultation →</a>
+        <a href="#services" onclick="go('services');return false;" class="btn btn-ghost">See Our Services</a>
+      </div>
+      <div class="hero-badges">
+        <div class="hero-badge"><span class="dot"></span>Police-checked staff</div>
+        <div class="hero-badge"><span class="dot"></span>Fair-wage certified</div>
+        <div class="hero-badge"><span class="dot"></span>Direct line to your team</div>
+      </div>
+    </div>
+
+    <div class="bridge">
+      <div class="bridge-label">
+        <div class="eyebrow">Working In The Open</div>
+        <div class="live"><span class="pulse"></span>LIVE</div>
+      </div>
+      <div class="cities">
+        <div class="city">
+          <div class="place">Sydney</div>
+          <div class="country">Australia</div>
+          <div class="time" id="time-syd">--:--</div>
+          <div class="tz">AEST · your team</div>
+        </div>
+        <div class="arc-wrap">
+          <svg viewBox="0 0 200 40" preserveAspectRatio="none">
+            <path d="M0,34 C60,-6 140,-6 200,34" fill="none" stroke="#2C5468" stroke-width="1.5" stroke-dasharray="3 6"/>
+            <circle cx="100" cy="9" r="3" fill="#E8A33D"/>
+          </svg>
+        </div>
+        <div class="city">
+          <div class="place">Manila</div>
+          <div class="country">Philippines</div>
+          <div class="time" id="time-mnl">--:--</div>
+          <div class="tz">PHT · your specialist</div>
+        </div>
+      </div>
+      <div class="bridge-foot"><strong>No black box.</strong> Every VeriStaff client knows exactly where their team sits, what they're paid, and how to reach them directly — no subcontracted layers.</div>
+    </div>
+  </div>
+</section>
+
+<div class="trust-strip">
+  <div class="wrap">
+    <div class="trust-item"><span class="ico">✓</span>100% Australian-owned</div>
+    <div class="trust-item"><span class="ico">AU</span>ABN Registered</div>
+    <div class="trust-item"><span class="ico">🔒</span>NDA &amp; data-secure by default</div>
+    <div class="trust-item"><span class="ico">★</span>Trusted by 60+ AU practices</div>
+    <div class="trust-item"><span class="ico">24</span>24–48hr shortlist turnaround</div>
+  </div>
+</div>
+
+<section id="services">
+  <div class="wrap">
+    <div class="head-block">
+      <div class="eyebrow">Our Services</div>
+      <h2>Roles built around how Australian businesses actually run</h2>
+      <p>Every placement is matched, trained, and supported by VeriStaff — not handed off and forgotten.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">🩺</div>
+        <h3>Medical Receptionists</h3>
+        <p>Front-desk cover for clinics and practices, trained on AU booking systems and patient etiquette.</p>
+        <ul class="service-list">
+          <li>Appointment scheduling &amp; recalls</li>
+          <li>Patient enquiries &amp; triage support</li>
+          <li>Works inside your existing PMS</li>
+        </ul>
+        <a href="#services" onclick="go('services');return false;" class="link">Explore this role →</a>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">📊</div>
+        <h3>Accountants &amp; Bookkeepers</h3>
+        <p>Qualified finance professionals fluent in Xero, MYOB, and Australian reporting standards.</p>
+        <ul class="service-list">
+          <li>BAS-ready bookkeeping</li>
+          <li>Accounts payable/receivable</li>
+          <li>Monthly reconciliation &amp; reporting</li>
+        </ul>
+        <a href="#services" onclick="go('services');return false;" class="link">Explore this role →</a>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🧭</div>
+        <h3>Virtual Assistants</h3>
+        <p>Administrative, content, and inbox support that scales with your business — hour by hour.</p>
+        <ul class="service-list">
+          <li>Calendar &amp; inbox management</li>
+          <li>Content creation &amp; social support</li>
+          <li>Research &amp; data entry</li>
+        </ul>
+        <a href="#services" onclick="go('services');return false;" class="link">Explore this role →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="how" class="section-sand">
+  <div class="wrap">
+    <div class="head-block">
+      <div class="eyebrow">How It Works</div>
+      <h2>From first call to onboarded team member</h2>
+      <p>A fixed four-step process, so you always know what happens next.</p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h3>Discovery call</h3>
+        <p>We learn your workflows, tools, and the exact gap you're hiring for — no generic job spec.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h3>Vetted shortlist</h3>
+        <p>Receive 2–3 pre-screened, reference-checked candidates within 48 hours.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h3>Interview &amp; select</h3>
+        <p>You interview directly and choose who joins your team — we never assign blind.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <h3>Onboard &amp; support</h3>
+        <p>We handle setup and stay on as your point of contact for the life of the placement.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="commitment" class="commit">
+  <div class="wrap commit-grid">
+    <div>
+      <div class="eyebrow">Our Ethical Commitment</div>
+      <h2>Outsourcing shouldn't mean looking away.</h2>
+      <p class="lead">VeriStaff was built on the idea that cost savings and fair treatment aren't a trade-off. Every placement follows the same standard, whether you're watching or not.</p>
+      <div class="stat-row">
+        <div class="stat"><div class="num">100%</div><div class="lbl">Staff on above-award local wages</div></div>
+        <div class="stat"><div class="num">0</div><div class="lbl">Subcontracted layers between you &amp; your hire</div></div>
+        <div class="stat"><div class="num">48h</div><div class="lbl">Average shortlist turnaround</div></div>
+      </div>
+    </div>
+    <div class="pillars">
+      <div class="pillar">
+        <div class="pillar-mark">01</div>
+        <div><h3>Transparency by default</h3><p>You always know who's on your team, where they're based, and what they're paid — it's in the contract, not a footnote.</p></div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-mark">02</div>
+        <div><h3>Fair pay, always</h3><p>Every VeriStaff hire earns above local award wages — cost savings come from efficiency, never from underpaying people.</p></div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-mark">03</div>
+        <div><h3>Real vetting, not a resume pile</h3><p>Every candidate passes identity, reference, and skills verification before they ever reach your shortlist.</p></div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-mark">04</div>
+        <div><h3>A human point of contact</h3><p>You get a named VeriStaff manager, not a ticket queue, for as long as the placement runs.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="reviews">
+  <div class="wrap">
+    <div class="head-block">
+      <div class="eyebrow">What Clients Say</div>
+      <h2>Trusted by clinics, firms, and growing teams</h2>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <div class="stars">★★★★★</div>
+        <p class="quote">"Our VeriStaff receptionist has been answering calls exactly like an in-house hire from week one. The onboarding support made the difference."</p>
+        <div class="testi-person">
+          <div class="avatar" style="background:var(--gold-deep)">JM</div>
+          <div><div class="name">Dr. Jane Mercer</div><div class="role">Practice Owner, Northside Clinic</div></div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="stars">★★★★★</div>
+        <p class="quote">"Knowing exactly what our bookkeeper is paid and how she's treated made the decision easy. It's the only outsourcing model we've trusted."</p>
+        <div class="testi-person">
+          <div class="avatar" style="background:#1F7A64">RT</div>
+          <div><div class="name">Ryan Tan</div><div class="role">Director, Tan &amp; Co Accounting</div></div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="stars">★★★★★</div>
+        <p class="quote">"We had a shortlist in two days and a hired VA in one week. Communication has been direct and honest the entire way through."</p>
+        <div class="testi-person">
+          <div class="avatar" style="background:var(--navy-3)">SL</div>
+          <div><div class="name">Sarah Lowe</div><div class="role">Founder, Lowe Property Group</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="wrap">
+    <div class="cta-inner">
+      <div>
+        <h2>Ready to build a team you can stand behind?</h2>
+        <p>Book a free 20-minute consultation — no obligation, no generic pitch deck.</p>
+      </div>
+      <div class="cta-right">
+        <a href="#contact" onclick="go('contact');return false;" class="btn btn-gold">Book a Free Consultation →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</div>
+
+<div id="page-services" class="page">
+
+<section class="svc-hero">
+  <div class="wrap">
+    <div class="eyebrow">Our Services</div>
+    <h1>Three roles. One standard of vetting, pay, and support.</h1>
+    <p>We don't run a resume mill. Every VeriStaff placement — receptionist, bookkeeper, or assistant — goes through the same integrity checks and stays backed by a named account manager.</p>
+  </div>
+</section>
+
+<div class="trust-strip">
+  <div class="wrap">
+    <div class="trust-item"><span class="ico">✓</span>100% Australian-owned</div>
+    <div class="trust-item"><span class="ico">🔒</span>NDA &amp; data-secure by default</div>
+    <div class="trust-item"><span class="ico">★</span>Trusted by 60+ AU practices</div>
+    <div class="trust-item"><span class="ico">24</span>24–48hr shortlist turnaround</div>
+  </div>
+</div>
+
+<section>
+  <div class="wrap">
+
+    <div class="svc-detail">
+      <div class="svc-visual">
+        <div class="big-icon">🩺</div>
+        <h3 style="font-family:'Fraunces',serif; color:var(--navy); font-size:20px;">Medical Receptionists</h3>
+        <div class="tag-row">
+          <span class="tag">Front Desk</span>
+          <span class="tag">Patient Comms</span>
+          <span class="tag">PMS Trained</span>
+        </div>
+      </div>
+      <div class="svc-copy">
+        <div class="eyebrow">Role 01</div>
+        <h2>Medical Receptionists</h2>
+        <p class="desc">Trained on Australian patient etiquette, privacy obligations, and the booking systems your clinic already runs — so calls get answered the way your patients expect, without you re-training from scratch.</p>
+        <div class="svc-cols">
+          <div>
+            <h4>Typically handles</h4>
+            <ul>
+              <li>Appointment scheduling &amp; recalls</li>
+              <li>Inbound calls &amp; triage screening</li>
+              <li>Patient record updates</li>
+            </ul>
+          </div>
+          <div>
+            <h4>Comes ready with</h4>
+            <ul>
+              <li>Working knowledge of major PMS platforms</li>
+              <li>AU privacy &amp; health-data awareness</li>
+              <li>Police check &amp; reference verification</li>
+            </ul>
+          </div>
+        </div>
+        <a href="#contact" onclick="go('contact');return false;" class="btn btn-outline-navy">Request This Role →</a>
+      </div>
+    </div>
+
+    <div class="svc-detail reverse">
+      <div class="svc-visual">
+        <div class="big-icon">📊</div>
+        <h3 style="font-family:'Fraunces',serif; color:var(--navy); font-size:20px;">Accountants &amp; Bookkeepers</h3>
+        <div class="tag-row">
+          <span class="tag">Xero</span>
+          <span class="tag">MYOB</span>
+          <span class="tag">BAS-Ready</span>
+        </div>
+      </div>
+      <div class="svc-copy">
+        <div class="eyebrow">Role 02</div>
+        <h2>Accountants &amp; Bookkeepers</h2>
+        <p class="desc">Qualified finance professionals fluent in the platforms Australian firms actually use, from day-to-day reconciliation through to BAS-ready reporting your accountant can sign off on.</p>
+        <div class="svc-cols">
+          <div>
+            <h4>Typically handles</h4>
+            <ul>
+              <li>Accounts payable &amp; receivable</li>
+              <li>Bank &amp; account reconciliation</li>
+              <li>Monthly management reporting</li>
+            </ul>
+          </div>
+          <div>
+            <h4>Comes ready with</h4>
+            <ul>
+              <li>Xero / MYOB / QuickBooks certified</li>
+              <li>AU tax &amp; BAS reporting familiarity</li>
+              <li>Confidentiality &amp; NDA agreement</li>
+            </ul>
+          </div>
+        </div>
+        <a href="#contact" onclick="go('contact');return false;" class="btn btn-outline-navy">Request This Role →</a>
+      </div>
+    </div>
+
+    <div class="svc-detail">
+      <div class="svc-visual">
+        <div class="big-icon">🧭</div>
+        <h3 style="font-family:'Fraunces',serif; color:var(--navy); font-size:20px;">Virtual Assistants</h3>
+        <div class="tag-row">
+          <span class="tag">Admin</span>
+          <span class="tag">Content</span>
+          <span class="tag">Research</span>
+        </div>
+      </div>
+      <div class="svc-copy">
+        <div class="eyebrow">Role 03</div>
+        <h2>Virtual Assistants</h2>
+        <p class="desc">Administrative and creative support that flexes with your workload — from inbox triage to content drafts — matched to the specific tools and tone your business runs on.</p>
+        <div class="svc-cols">
+          <div>
+            <h4>Typically handles</h4>
+            <ul>
+              <li>Calendar &amp; inbox management</li>
+              <li>Social content &amp; scheduling</li>
+              <li>Research &amp; data entry</li>
+            </ul>
+          </div>
+          <div>
+            <h4>Comes ready with</h4>
+            <ul>
+              <li>Google &amp; Microsoft Workspace fluency</li>
+              <li>Canva / CapCut / basic design skills</li>
+              <li>Async communication training</li>
+            </ul>
+          </div>
+        </div>
+        <a href="#contact" onclick="go('contact');return false;" class="btn btn-outline-navy">Request This Role →</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="section-sand">
+  <div class="wrap">
+    <div class="head-block">
+      <div class="eyebrow">Engagement Options</div>
+      <h2>Simple, transparent plans</h2>
+      <p>No lock-in contracts and no hidden margins — you see the placement fee and the wage separately.</p>
+    </div>
+    <div class="tiers">
+      <div class="tier">
+        <h3>Part-Time</h3>
+        <div class="price">20<span> hrs / week</span></div>
+        <p class="desc">Great for a single recurring workflow or seasonal cover.</p>
+        <ul>
+          <li>1 dedicated specialist</li>
+          <li>Core business hours overlap</li>
+          <li>Monthly check-in with account manager</li>
+        </ul>
+        <a href="#contact" onclick="go('contact');return false;" class="btn btn-outline-navy" style="width:100%; justify-content:center;">Get a Quote</a>
+      </div>
+      <div class="tier featured">
+        <h3>Full-Time</h3>
+        <div class="price">40<span> hrs / week</span></div>
+        <p class="desc">The standard for an ongoing, embedded team member.</p>
+        <ul>
+          <li>1 dedicated specialist</li>
+          <li>Full AU business-hours overlap</li>
+          <li>Fortnightly check-ins + priority support</li>
+        </ul>
+        <a href="#contact" onclick="go('contact');return false;" class="btn btn-gold" style="width:100%; justify-content:center;">Get a Quote</a>
+      </div>
+      <div class="tier">
+        <h3>Dedicated Team</h3>
+        <div class="price">2+<span> specialists</span></div>
+        <p class="desc">For businesses building out a full offshore function.</p>
+        <ul>
+          <li>Multiple roles, one account manager</li>
+          <li>Custom onboarding &amp; SOPs</li>
+          <li>Quarterly performance reviews</li>
+        </ul>
+        <a href="#contact" onclick="go('contact');return false;" class="btn btn-outline-navy" style="width:100%; justify-content:center;">Get a Quote</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="head-block">
+      <div class="eyebrow">Common Questions</div>
+      <h2>Before you book a call</h2>
+    </div>
+    <div>
+      <div class="faq-item">
+        <h4>How fast can someone start?</h4>
+        <p>Most clients interview a shortlist within 48 hours and have their new team member onboarded inside two weeks.</p>
+      </div>
+      <div class="faq-item">
+        <h4>Do I interview candidates myself?</h4>
+        <p>Always. We never assign blind — you interview every shortlisted candidate and make the final call.</p>
+      </div>
+      <div class="faq-item">
+        <h4>What happens if it's not the right fit?</h4>
+        <p>We re-shortlist at no extra placement cost within the first 30 days — no long-form dispute process.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="wrap">
+    <div class="cta-inner">
+      <div>
+        <h2>Not sure which role fits your gap?</h2>
+        <p>Book a free 20-minute consultation and we'll help you scope it out.</p>
+      </div>
+      <div class="cta-right">
+        <a href="#contact" onclick="go('contact');return false;" class="btn btn-gold">Book a Free Consultation →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</div>
+
+<div id="page-about" class="page">
+
+<section class="about-hero">
+  <div class="wrap">
+    <div class="eyebrow">About VeriStaff</div>
+    <h1>We started VeriStaff because "outsourcing" had become a euphemism.</h1>
+    <p>Too many providers hide where their staff sit and what they're paid. We built the opposite: an agency that puts that information in the contract, not behind a wall.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap story">
+    <div>
+      <div class="eyebrow" style="color:var(--gold-deep);">Our Story</div>
+      <h2 style="font-size:30px; color:var(--navy); margin:14px 0 16px;">Built by people who'd been on both sides of a bad outsourcing deal</h2>
+      <p style="color:var(--muted); font-size:15.5px; margin-bottom:16px;">VeriStaff's founders spent years watching two things happen at once: Australian small businesses got quoted "savings" that never materialised past hidden fees, and the offshore staff behind those contracts were paid a fraction of what clients believed.</p>
+      <p style="color:var(--muted); font-size:15.5px;">So we rebuilt the model from the contract up — one placement fee, one fair wage, one named point of contact. No subcontracted layers in between.</p>
+    </div>
+    <div class="story-visual">
+      <div>
+        <div class="yr">2019</div>
+        <div class="yr-lbl">Founded in Sydney</div>
+      </div>
+      <div>
+        <div class="yr">60+</div>
+        <div class="yr-lbl">Australian businesses placed</div>
+      </div>
+      <div>
+        <div class="yr">120+</div>
+        <div class="yr-lbl">Specialists employed above award wage</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-sand" id="commitment">
+  <div class="wrap">
+    <div class="head-block">
+      <div class="eyebrow">Milestones</div>
+      <h2>How the commitment took shape</h2>
+    </div>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <h4>2019</h4>
+        <h3>VeriStaff founded</h3>
+        <p>Started with a single client and one medical receptionist placement in Sydney.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <h4>2021</h4>
+        <h3>Fair-wage standard introduced</h3>
+        <p>Committed every placement to above-award local wages, published in every contract.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <h4>2023</h4>
+        <h3>Bookkeeping &amp; VA services launched</h3>
+        <p>Expanded beyond medical reception into finance and administrative support roles.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <h4>2026</h4>
+        <h3>60+ businesses, zero subcontracted layers</h3>
+        <p>Every one of our specialists remains a direct VeriStaff hire — never resold through a third party.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="head-block">
+      <div class="eyebrow">Leadership</div>
+      <h2>The people behind the standard</h2>
+    </div>
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="team-avatar" style="background:var(--navy);">AC</div>
+        <div class="name">Anna Cruz</div>
+        <div class="role">Co-Founder &amp; CEO</div>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar" style="background:var(--gold-deep);">DM</div>
+        <div class="name">Daniel Marsh</div>
+        <div class="role">Co-Founder &amp; Head of Client Success</div>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar" style="background:#1F7A64;">LR</div>
+        <div class="name">Liza Reyes</div>
+        <div class="role">Head of People &amp; Vetting</div>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar" style="background:var(--navy-3);">TK</div>
+        <div class="name">Theo Kim</div>
+        <div class="role">Head of Finance Placements</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="wrap">
+    <div class="cta-inner">
+      <div>
+        <h2>Want to see the standard in action?</h2>
+        <p>Talk to us about the role you're trying to fill.</p>
+      </div>
+      <div class="cta-right">
+        <a href="#contact" onclick="go('contact');return false;" class="btn btn-gold">Book a Free Consultation →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</div>
+
+<div id="page-careers" class="page">
+
+<section class="careers-hero">
+  <div class="wrap">
+    <div class="eyebrow">Careers at VeriStaff</div>
+    <h1>Join a team that pays fairly and says so in writing.</h1>
+    <p>We hire directly — no subcontracted layers, no vague "market rate" excuses. Above-award wages, real Australian clients, and a named manager who has your back.</p>
+    <div style="margin-top:28px;"><a href="#openings" class="btn btn-gold">View Open Roles →</a></div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="head-block">
+      <div class="eyebrow">Why VeriStaff</div>
+      <h2>What you get, in plain terms</h2>
+    </div>
+    <div class="benefit-grid">
+      <div class="benefit-card">
+        <div class="b-icon">₱</div>
+        <h3>Above-award pay</h3>
+        <p>Every role pays above local award rates, reviewed annually — not just at hiring.</p>
+      </div>
+      <div class="benefit-card">
+        <div class="b-icon">🤝</div>
+        <h3>Direct employment</h3>
+        <p>You're hired by VeriStaff, not resold through a subcontractor chain.</p>
+      </div>
+      <div class="benefit-card">
+        <div class="b-icon">📈</div>
+        <h3>Real growth path</h3>
+        <p>Structured reviews and skill pathways into senior and specialist roles.</p>
+      </div>
+      <div class="benefit-card">
+        <div class="b-icon">🧑‍🤝‍🧑</div>
+        <h3>A team, not a ticket</h3>
+        <p>A named manager checks in with you, not just with the client.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-sand" id="openings">
+  <div class="wrap">
+    <div class="head-block">
+      <div class="eyebrow">Open Roles</div>
+      <h2>Current openings in Manila &amp; remote PH</h2>
+    </div>
+    <div class="job-list">
+      <div class="job-card">
+        <div class="job-main">
+          <div class="job-badge" style="background:#FDECD2; color:var(--gold-deep);">🩺</div>
+          <div>
+            <div class="job-title">Medical Receptionist</div>
+            <div class="job-meta"><span>Manila / Remote</span><span>Full-time</span><span>AU business hours</span></div>
+          </div>
+        </div>
+        <a href="#contact" onclick="go('contact');return false;" class="btn btn-outline-navy">Apply Now</a>
+      </div>
+      <div class="job-card">
+        <div class="job-main">
+          <div class="job-badge" style="background:#DCEEE9; color:#1F7A64;">📊</div>
+          <div>
+            <div class="job-title">Junior Bookkeeper (Xero)</div>
+            <div class="job-meta"><span>Manila / Remote</span><span>Full-time</span><span>AU business hours</span></div>
+          </div>
+        </div>
+        <a href="#contact" onclick="go('contact');return false;" class="btn btn-outline-navy">Apply Now</a>
+      </div>
+      <div class="job-card">
+        <div class="job-main">
+          <div class="job-badge" style="background:#E4EEF3; color:var(--navy-3);">🧭</div>
+          <div>
+            <div class="job-title">Virtual Assistant — Content &amp; Admin</div>
+            <div class="job-meta"><span>Remote, PH-based</span><span>Part-time or Full-time</span><span>Flexible hours</span></div>
+          </div>
+        </div>
+        <a href="#contact" onclick="go('contact');return false;" class="btn btn-outline-navy">Apply Now</a>
+      </div>
+      <div class="job-card">
+        <div class="job-main">
+          <div class="job-badge" style="background:var(--sand); color:var(--navy);">💬</div>
+          <div>
+            <div class="job-title">Don't see your role?</div>
+            <div class="job-meta"><span>We review general applications monthly</span></div>
+          </div>
+        </div>
+        <a href="#contact" onclick="go('contact');return false;" class="btn btn-outline-navy">Send Your CV</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="culture-quote">
+      <div class="qmark">"</div>
+      <div>
+        <p class="q">I've worked offshore roles before where I never knew who I actually worked for. At VeriStaff my contract has the client's name, my manager's name, and my wage — all on one page.</p>
+        <div class="who">— Maricel D., Bookkeeper, with VeriStaff since 2022</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="wrap">
+    <div class="cta-inner">
+      <div>
+        <h2>Ready to apply?</h2>
+        <p>Send your CV and we'll respond within three business days.</p>
+      </div>
+      <div class="cta-right">
+        <a href="#contact" onclick="go('contact');return false;" class="btn btn-gold">Send Your Application →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</div>
+
+<div id="page-contact" class="page">
+
+<section class="contact-hero">
+  <div class="wrap">
+    <div class="eyebrow">Contact Us</div>
+    <h1>Let's talk about the role you're trying to fill.</h1>
+    <p>Tell us what you need and we'll come back with a shortlist plan — usually within one business day.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap contact-grid">
+    <div class="form-card">
+      <h2 style="font-size:22px; color:var(--navy); margin-bottom:22px;">Send us a message</h2>
+      <form onsubmit="return false;">
+        <div class="form-row">
+          <div class="field">
+            <label for="fname">First name</label>
+            <input id="fname" type="text" placeholder="Jane">
+          </div>
+          <div class="field">
+            <label for="lname">Last name</label>
+            <input id="lname" type="text" placeholder="Mercer">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="field">
+            <label for="email">Work email</label>
+            <input id="email" type="email" placeholder="jane@yourbusiness.com.au">
+          </div>
+          <div class="field">
+            <label for="company">Business name</label>
+            <input id="company" type="text" placeholder="Northside Clinic">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="field full">
+            <label for="role">What are you looking to hire?</label>
+            <select id="role">
+              <option>Medical Receptionist</option>
+              <option>Accountant / Bookkeeper</option>
+              <option>Virtual Assistant</option>
+              <option>Not sure yet — let's talk</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="field full">
+            <label for="msg">Tell us a bit about the role</label>
+            <textarea id="msg" placeholder="e.g. Front-desk cover for a 3-GP clinic, roughly 30 hrs/week..."></textarea>
+          </div>
+        </div>
+        <button class="btn btn-gold form-submit" type="submit">Book a Free Consultation →</button>
+      </form>
+    </div>
+
+    <div>
+      <div class="info-card">
+        <div class="info-row">
+          <div class="info-ico">✉</div>
+          <div><div class="lbl">Email</div><div class="val">hello@veristaff.com.au</div></div>
+        </div>
+        <div class="info-row">
+          <div class="info-ico">☎</div>
+          <div><div class="lbl">Phone</div><div class="val">+61 2 5550 1839</div></div>
+        </div>
+        <div class="info-row">
+          <div class="info-ico">🏢</div>
+          <div><div class="lbl">Office</div><div class="val">Sydney, NSW · Manila, PH</div></div>
+        </div>
+      </div>
+
+      <div class="bridge" style="margin-bottom:20px;">
+        <div class="bridge-label">
+          <div class="eyebrow" style="color:#9FD9C9;">Office Hours</div>
+          <div class="live"><span class="pulse"></span>LIVE</div>
+        </div>
+        <div class="cities">
+          <div class="city">
+            <div class="place">Sydney</div>
+            <div class="country">Australia</div>
+            <div class="time" id="time-syd">--:--</div>
+            <div class="tz">AEST · Mon–Fri 9–5</div>
+          </div>
+          <div class="arc-wrap">
+            <svg viewBox="0 0 200 40" preserveAspectRatio="none">
+              <path d="M0,34 C60,-6 140,-6 200,34" fill="none" stroke="#2C5468" stroke-width="1.5" stroke-dasharray="3 6"/>
+              <circle cx="100" cy="9" r="3" fill="#E8A33D"/>
+            </svg>
+          </div>
+          <div class="city">
+            <div class="place">Manila</div>
+            <div class="country">Philippines</div>
+            <div class="time" id="time-mnl">--:--</div>
+            <div class="tz">PHT · Mon–Fri 7–3</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="map-block"><div class="map-pin">Sydney HQ, NSW 2000</div></div>
+    </div>
+  </div>
+</section>
+
+</div>
+
+<footer id="contact-footer">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-logo"><span class="logo-mark"></span>VeriStaff</div>
+        <p class="desc">Ethical outsourcing for Australian businesses — medical receptionists, accountants, bookkeepers, and virtual assistants, placed with integrity.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#services" onclick="go('services');return false;">Medical Receptionists</a></li>
+          <li><a href="#services" onclick="go('services');return false;">Accountants &amp; Bookkeepers</a></li>
+          <li><a href="#services" onclick="go('services');return false;">Virtual Assistants</a></li>
+          <li><a href="#services" onclick="go('services');return false;">All Services</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#about" onclick="go('about');return false;">About Us</a></li>
+          <li><a href="#about" onclick="go('about');return false;">Our Commitment</a></li>
+          <li><a href="#careers" onclick="go('careers');return false;">Careers</a></li>
+          <li><a href="#about" onclick="go('about');return false;">Blog</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Get in Touch</h4>
+        <ul>
+          <li><a href="mailto:hello@veristaff.com.au">hello@veristaff.com.au</a></li>
+          <li><a href="#contact" onclick="go('contact');return false;">Book a Call</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 VeriStaff. All rights reserved.</span>
+      <span>Sydney, Australia · Manila, Philippines</span>
+    </div>
+  </div>
+</footer>
+
+<div class="mock-nav">
+  <button onclick="go('home')" data-btn="home">Home</button>
+  <button onclick="go('services')" data-btn="services">Services</button>
+  <button onclick="go('about')" data-btn="about">About</button>
+  <button onclick="go('careers')" data-btn="careers">Careers</button>
+  <button onclick="go('contact')" data-btn="contact">Contact</button>
+</div>
+
+<script>
+  function pad(n){ return n.toString().padStart(2,'0'); }
+  function updateClocks(){
+    const now = new Date();
+    const sydFmt = new Intl.DateTimeFormat('en-AU', { hour:'2-digit', minute:'2-digit', hour12:false, timeZone:'Australia/Sydney' });
+    const mnlFmt = new Intl.DateTimeFormat('en-AU', { hour:'2-digit', minute:'2-digit', hour12:false, timeZone:'Asia/Manila' });
+    document.querySelectorAll('#time-syd').forEach(el => el.textContent = sydFmt.format(now));
+    document.querySelectorAll('#time-mnl').forEach(el => el.textContent = mnlFmt.format(now));
+  }
+  updateClocks();
+  setInterval(updateClocks, 1000);
+
+  function go(page){
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    const target = document.getElementById('page-' + page);
+    if(target) target.classList.add('active');
+
+    document.querySelectorAll('[data-nav]').forEach(a => a.classList.toggle('active', a.dataset.nav === page));
+    document.querySelectorAll('[data-btn]').forEach(b => b.classList.toggle('active', b.dataset.btn === page));
+
+    window.scrollTo({top:0, behavior:'instant'});
+    history.replaceState(null, '', '#' + page);
+  }
+
+  // Fix duplicate ids across pages (time-syd/time-mnl appear on home + contact) — handled via querySelectorAll above.
+  // Initial route
+  const startPage = (location.hash || '#home').replace('#','');
+  go(['home','services','about','careers','contact'].includes(startPage) ? startPage : 'home');
+</script>
+
+</body>
+</html>
